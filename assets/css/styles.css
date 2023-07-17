@@ -1,0 +1,108 @@
+* { 
+    border: 1px solid black;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    height: 13%;
+    width: 100%;
+}
+
+main {
+    width: 100%;
+    height: 81%;
+}
+
+footer {
+    width: 100%;
+    height: 6%;
+}
+
+.header-section, #header-div {
+    width: 100%;
+    height: 100%;
+}
+
+.main-section, #main-div-holder { 
+    height: 100%;
+    width: 100%;
+}
+
+#city-div {
+    height: 32%;
+}
+#forecast-title-div {
+    height: 5%;
+}
+#forecast-div {
+    height: 63%;
+}
+
+.forecast-card {
+    margin: 15px
+}
+
+.forecast-card-date {
+    height: 35%;
+    width: 100%;
+    font-size: 30px;
+}
+.forecast-card-img {
+    height: 20%;
+    width: 25%;
+}
+
+.forecast-card-temp, .forecast-card-wind, .forecast-card-humidity {
+    height: 15%;
+    width: 100%;
+    font-size: 20px;
+}
+
+.card-body {
+    padding: 5%;
+}
+
+#forecast-title, #forecast-title-text {
+    height: 100%;
+    font-size: 25px;
+}
+
+.display-3 {
+    font-weight: 450;
+}
+
+.city-card {
+    height: 100%;
+}
+
+#city-name {
+    height: 35%;
+}
+#city-temp, #city-humidity, #city-wind {
+    height: 21.66%;
+}
+
+#dialog {
+    width: 500px;
+    height: 500px;
+}
+
+@media only screen and (max-width: 780px) {
+    .forecast-card {
+        margin: 5px
+    }
+    .forecast-card-date {
+        font-size: 20px;
+    }
+    .forecast-card-temp, .forecast-card-wind, .forecast-card-humidity {
+        font-size: 9px;
+    }
+}
