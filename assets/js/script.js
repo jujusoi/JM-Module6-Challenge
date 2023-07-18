@@ -1,7 +1,7 @@
 var cityButton = $("#city-button");
-var apiLink = "https://api.openweathermap.org/data/2.5/forecast?lat=-34.928499&lon=138.600746&appid=59fedacb97569041997bcd20b66ef73d&units=metric"
-
-
+var apiLink = "https://api.openweathermap.org/data/2.5/forecast?";
+var details = "&appid=59fedacb97569041997bcd20b66ef73d&units=metric";
+var citySearchBar = $("#city-search-bar");
 
 cityButton.on("click", function() {
     var dialog = $(".ui-dialog")
@@ -9,20 +9,55 @@ cityButton.on("click", function() {
         dialog.css("display", "block");
     }
 })
+citySearchBar.on("input", cityLogic(citySearchBar.value));
 
+function cityLogic(city) {
+  var cities = {
+    Adelaide: ["lat=-34.928499&lon=138.600746", "Adelaide"],
+    Canberra: ["lat=-35.473468&lon=149.012368", "Canberra"],
+    Hobart: ["lat=-42.882138&lon=147.327195", "Hobart"],
+    Darwin: ["lat=-12.46344&lon=130.845642", "Darwin"],
+    Perth: ["lat=-31.950527&lon=115.860457", "Perth"],
+    Brisbane: ["lat=-27.469771&lon=153.025124", "Brisbane"],
+    Melbourne: ["lat=-37.813628&lon=144.963058", "Melbourne"],
+    Sydney: ["lat=-33.86882&lon=151.209296", "Sydney"]
+  }
+  var citiesLength = Object.keys(cities).length;
+  for (var i = 0; i < citiesLength; i++) {
+    var citiesName = Object.keys(cities)[i];
+    if (city === citiesName) {
+      var chosenCity = JSON.stringify(cities[city]);
+      var objectVal = JSON.parse(chosenCity);
+      var lat = objectVal[0];
+      var name = objectVal[1];
+    }
+  }
+  assignCityName(name);
+  var newLink = apiLink + lat + details;
+  return newLink;
+}
 
-fetch(apiLink)
-.then(function (response) {
-  return response.json();
-})
-.then(function (data) {
-  var info = data
-  var necessaryInformation = [info.list[1], info.list[9], info.list[17], info.list[25], info.list[33]];
-  console.log(necessaryInformation);
+function assignCityName(city) {
+  var cityNameText = $("#city-name");
+  var date = dayjs().format("DD/MM/YYYY");
+  cityNameText.text(city + " (" + date + ")")
+}
 
-  cycleInformation(necessaryInformation);
-  determineWeatherImage(necessaryInformation);
-});
+  fetch(cityLogic("Hobart"))
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    var info = data
+    var necessaryInformation = [info.list[1], info.list[9], info.list[17], info.list[25], info.list[33]];
+    console.log(necessaryInformation);
+  
+    setMainInfo(necessaryInformation);
+    cycleInformation(necessaryInformation);
+    determineWeatherImage(necessaryInformation);
+    getDay();
+  });
+
 
 function cycleInformation(stuff) {
   var day = 0;
@@ -35,10 +70,23 @@ function cycleInformation(stuff) {
     var humidityTest = $("#humidity-" + day);
     humidityTest.text("Humidity: " + filterHumidity +"%");
     var windTest = $("#wind-" + day);
-    windTest.text("Wind Speed: " + filterWind + "km/h");
+    windTest.text("Wind: " + filterWind + "km/h");
     var tempTest = $("#temp-" + day);
     tempTest.text(RoundedTemp + "°C");
   }
+}
+
+function setMainInfo(stuff) {
+    var filterHumidity = stuff[0].main.humidity;
+    var filterWind = stuff[0].wind.speed;
+    var filterTemp = stuff[0].main.temp;
+    var RoundedTemp = filterTemp.toFixed(1);
+    var humidityCity = $("#city-humidity");
+    humidityCity.text("Humidity: " + filterHumidity +"%");
+    var windCity = $("#city-wind");
+    windCity.text("Wind: " + filterWind + "km/h");
+    var tempCity = $("#city-temp");
+    tempCity.text("Temperature: " + RoundedTemp + "°C");
 }
 
 function determineWeatherImage(info) {
@@ -87,7 +135,6 @@ function getDay() {
 
 }
 
-getDay();
 
 function getTh(day) {
 
