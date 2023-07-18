@@ -1,6 +1,7 @@
 var cityButton = $("#city-button");
 var apiLink = "https://api.openweathermap.org/data/2.5/forecast?";
 var details = "&appid=59fedacb97569041997bcd20b66ef73d&units=metric";
+var citySearchButton = $("#city-search-button");
 var citySearchBar = $("#city-search-bar");
 
 cityButton.on("click", function() {
@@ -9,7 +10,7 @@ cityButton.on("click", function() {
         dialog.css("display", "block");
     }
 })
-citySearchBar.on("input", cityLogic(citySearchBar.value));
+
 
 function cityLogic(city) {
   var cities = {
@@ -43,7 +44,14 @@ function assignCityName(city) {
   cityNameText.text(city + " (" + date + ")")
 }
 
-  fetch(cityLogic("Hobart"))
+
+citySearchButton.on("click", function() {
+  var value = citySearchBar.val();
+  fetchStuff(value);
+})
+
+function fetchStuff(input) {
+  fetch(cityLogic(input))
   .then(function (response) {
     return response.json();
   })
@@ -57,6 +65,8 @@ function assignCityName(city) {
     determineWeatherImage(necessaryInformation);
     getDay();
   });
+}
+
 
 
 function cycleInformation(stuff) {
