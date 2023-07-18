@@ -99,15 +99,21 @@ footer {
     width: 100%;
 }
 
+.card-title {
+    margin-bottom: 0;
+}
 
 @media only screen and (max-width: 780px) {
     .forecast-card {
         margin: 5px
     }
     .forecast-card-date {
-        font-size: 20px;
+        font-size: 15px;
     }
     .forecast-card-temp, .forecast-card-wind, .forecast-card-humidity {
         font-size: 9px;
+    }
+    .forecast-card-img {
+        height: 30%;
     }
 }
