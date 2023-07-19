@@ -3,6 +3,7 @@ var apiLink = "https://api.openweathermap.org/data/2.5/forecast?";
 var details = "&appid=59fedacb97569041997bcd20b66ef73d&units=metric";
 var citySearchButton = $("#city-search-button");
 var citySearchBar = $("#city-search-bar");
+var widgetButton = $(".ui-button");
 var availableCities = [
   "Hobart",
   "Brisbane",
@@ -15,12 +16,11 @@ var availableCities = [
 ];
 
 cityButton.on("click", function() {
-    var dialog = $(".ui-dialog")
+    var dialog = $(".ui-dialog");
     if (dialog.css("display", "") === dialog.css("display", "none")) {
         dialog.css("display", "block");
-    }
+  }
 })
-
 
 function cityLogic(city) {
   var cities = {
@@ -51,7 +51,7 @@ function cityLogic(city) {
 function assignCityName(city) {
   var cityNameText = $("#city-name");
   var date = dayjs().format("DD/MM/YYYY");
-  cityNameText.text(city + " (" + date + ")")
+  cityNameText.text(city + " (" + date + ") ");
 }
 
 $( function() {
@@ -74,7 +74,9 @@ citySearchButton.on("click", function() {
 
 function setPlaceholder() {
   var previousInput = window.localStorage.getItem("previousCity");
-  $("#city-search-bar").attr("placeholder", previousInput);
+  var bar = $("#city-search-bar");
+  bar.attr("placeholder", previousInput);
+  bar.val("");
 }
 
 $(".city-display-button").on("click", function() {
@@ -194,3 +196,5 @@ function getTh(day) {
     var th = "th";
   } return th;
 }
+
+fetchStuff("Adelaide");

@@ -29,9 +29,10 @@
             <div id="main-div-holder" class="container-fluid">
                 <div id="city-div" class="flex-row col-9 col-md-8 m-auto">
                     <div class="city-card card p-4 d-flex justify-content-center align-items-center">
-                        <h2 id="city-name" class="card-title col-12 col-md-9 text-center">City goes here<button
-                                id="city-button" style="display: none;">Press me</button></h2>
-                        <p id="city-temp" class="col-10 col-md-6 text-center">temp goes here</p>
+                        <h2 id="city-name" class="card-title col-12 col-md-9 text-center">City goes here</h2>
+                        <button
+                            id="city-button">Change City</button>
+                        <p id="city-temp" class="mt-2 col-10 col-md-6 text-center">temp goes here</p>
                         <p id="city-wind" class="col-10 col-md-6 text-center">wind goes here</p>
                         <p id="city-humidity" class="col-10 col-md-6 text-center">humidity goes here</p>
                     </div>
@@ -127,7 +128,11 @@
     var dialog = $(".ui-dialog");
     var dialogTitle = $(".ui-dialog-title");
     dialogTitle.text("‎");
-    dialog.css("display", "block");
+    dialog.css("display", "none");
+    var uiButton = $(".ui-button");
+    uiButton.on("click", function() {
+        dialog.css("display", "none");
+    })
     });
 </script>
 <script src="./assets/js/script.js"></script>
