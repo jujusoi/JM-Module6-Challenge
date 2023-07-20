@@ -51,7 +51,10 @@ function cityLogic(city) {
 function assignCityName(city) {
   var cityNameText = $("#city-name");
   var date = dayjs().format("DD/MM/YYYY");
-  cityNameText.text(city + " (" + date + ") ");
+  var span = $("<span></span");
+  span.text(" (" + date + ")");
+  cityNameText.text(city);
+  cityNameText.append(span);
 }
 
 $( function() {
@@ -138,25 +141,33 @@ function setMainInfo(stuff) {
 
 function determineWeatherImage(info) {
   var image = "";
+  var backgroundImage = "";
   var day = 0;
   for (var i = 0; i < info.length; i++) {
     day = day + 1;
     var weather = info[i].weather[0].main;
     if (weather === "Clouds") {
-      image = "./assets/images/cloudy.png";
+      image = "./assets/images/icons/cloudy.png";
+      backgroundImage = "https://i.pinimg.com/736x/be/69/80/be6980f240fc6a14730e8f85aea07f32.jpg";
     } else if (weather === "Rain") {
-      image = "./assets/images/raining.png";
+      image = "./assets/images/icons/raining.png";
+      backgroundImage = "./assets/images/background/Rain.png";
     } else if (weather === "Clear") {
-      image = "./assets/images/clear.png"
+      image = "./assets/images/icons/clear.png";
+      backgroundImage = "https://img.freepik.com/fotos-premium/cielo-ensueno-como-fondo-abstracto-fantasia-colores-pastel-belleza-diseno-naturaleza_360074-8272.jpg"
     } else if (weather === "Fog" || "Mist" || "Smoke" || "Haze" || "Dust" || "Sand" || "Ash" || "Squall" || "Tornado") {
-      image = "./assets/images/windy.png"
+      image = "./assets/images/icons/windy.png";
     } else if (weather === "Snow") {
-      image = "./assets/images/snow.png"
+      image = "./assets/images/icons/snow.png";
+      backgroundImage = "https://static.vecteezy.com/system/resources/previews/007/188/223/original/abstract-blue-winter-watercolor-background-sky-pattern-with-snow-vector.jpg";
     } else if (weather === "Thunderstorm") {
-      image = "./assets/images/thunderstorm.png"
+      image = "./assets/images/icons/thunderstorm.png";
+      backgroundImage = "./assets/images/background/Rain.png";
     }
     var imageHolder = $("#img-" + day);
     imageHolder.attr("src", image);
+    var cardDiv = $("#forecast-card-" + day)
+    cardDiv.css("background-image", "url(" + backgroundImage + ")");
   }
 }
 

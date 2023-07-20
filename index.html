@@ -27,9 +27,9 @@
     <main id="main">
         <section class="main-section">
             <div id="main-div-holder" class="container-fluid">
-                <div id="city-div" class="flex-row col-9 col-md-8 m-auto">
-                    <div class="city-card card p-4 d-flex justify-content-center align-items-center">
-                        <h2 id="city-name" class="card-title col-12 col-md-9 text-center">City goes here</h2>
+                <div id="city-div" class="flex-row col-9 col-md-8 col-lg-4 m-auto">
+                    <div class="city-card card p-4 d-flex justify-content-center align-items-center mt-3" id="main-city-card">
+                        <h2 id="city-name" class="d-flex card-title col-12 col-md-9 text-center justify-content-evenly align-items-center">City goes here</h2>
                         <button
                             id="city-button">Change City</button>
                         <p id="city-temp" class="mt-2 col-10 col-md-6 text-center">temp goes here</p>
@@ -37,13 +37,13 @@
                         <p id="city-humidity" class="col-10 col-md-6 text-center">humidity goes here</p>
                     </div>
                 </div>
-                <div id="forecast-title-div" class="flex-row col-7 m-auto">
+                <div id="forecast-title-div" class="flex-row col-8 col-md-11 m-auto mt-3">
                     <div id="forecast-title">
-                        <h3 id="forecast-title-text" class="text-center">5-Day Forecast</h3>
+                        <h3 id="forecast-title-text" class="text-center mt-2">5-Day Forecast</h3>
                     </div>
                 </div>
                 <div id="forecast-div" class="d-flex flex-row col-12 justify-content-center flex-wrap py-1 px-1">
-                    <div class="forecast-card card col-4 col-md-2">
+                    <div class="forecast-card card col-4 col-md-2" id="forecast-card-1">
                         <div class="card-body d-flex flex-column align-items-center">
                             <h4 class="forecast-card-date card-title text-center" id="today"></h4>
                             <img src="" alt="" class="forecast-card-img card-img" id="img-1">
@@ -52,7 +52,7 @@
                             <p class="forecast-card-humidity text-center" id="humidity-1"></p>
                         </div>
                     </div>
-                    <div class="forecast-card card col-4 col-md-2">
+                    <div class="forecast-card card col-4 col-md-2" id="forecast-card-2">
                         <div class="card-body d-flex flex-column align-items-center">
                             <h4 class="forecast-card-date card-title text-center" id="day-1"></h4>
                             <img src="" alt="" class="forecast-card-img card-img" id="img-2">
@@ -61,7 +61,7 @@
                             <p class="forecast-card-humidity text-center" id="humidity-2"></p>
                         </div>
                     </div>
-                    <div class="forecast-card card col-4 col-md-2">
+                    <div class="forecast-card card col-4 col-md-2" id="forecast-card-3">
                         <div class="card-body d-flex flex-column align-items-center">
                             <h4 class="forecast-card-date card-title text-center" id="day-2"></h4>
                             <img src="" alt="" class="forecast-card-img card-img" id="img-3">
@@ -70,7 +70,7 @@
                             <p class="forecast-card-humidity text-center" id="humidity-3"></p>
                         </div>
                     </div>
-                    <div class="forecast-card card col-4 col-md-2">
+                    <div class="forecast-card card col-4 col-md-2" id="forecast-card-4">
                         <div class="card-body d-flex flex-column align-items-center">
                             <h4 class="forecast-card-date card-title text-center" id="day-3"></h4>
                             <img src="" alt="" class="forecast-card-img card-img" id="img-4">
@@ -79,7 +79,7 @@
                             <p class="forecast-card-humidity text-center" id="humidity-4"></p>
                         </div>
                     </div>
-                    <div class="forecast-card card col-4 col-md-2">
+                    <div class="forecast-card card col-4 col-md-2" id="forecast-card-5">
                         <div class="card-body d-flex flex-column align-items-center">
                             <h4 class="forecast-card-date card-title text-center" id="day-4"></h4>
                             <img src="" alt="" class="forecast-card-img card-img" id="img-5">
