@@ -42,7 +42,7 @@ footer {
     height: 32%;
 }
 #forecast-title-div {
-    height: 5%;
+    height: 8%;
     background-color: rgba(0, 167, 167, 0.322);
     color: white;
     border-top-right-radius: 8px;
@@ -146,6 +146,7 @@ footer {
 #city-button {
     border-radius: 5px;
     background-color: rgba(173, 143, 139, 0.89);
+    font-weight: 350;
 }
 
 #city-button:hover {
@@ -163,6 +164,68 @@ span {
     font-weight: 150;
 }
 
+.ui-widget {
+    font-family: inherit;
+}
+
+.city-display-button {
+    border-radius: 5px;
+    background-color: rgba(173, 143, 139, 0.89);
+}
+.city-display-button:hover {
+    transition: ease-in-out .15s;
+    color: white;
+    background-color: rgba(140, 115, 112, 0.89);
+}
+
+#city-search-bar {
+    border: 2px solid rgba(0, 167, 167, 0.322);
+    border-radius: 5px;
+}
+#city-search-bar:hover {
+    transition: ease-in-out .25s;
+    background-color: rgba(12, 172, 172, 0.045);;
+}
+
+#city-search-button {
+    background-color: rgba(0, 167, 167, 0.322);
+    color: white;
+    font-weight: bold;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#city-search-button:hover {
+    transition: ease-in-out .2s;
+    background-color: rgba(0, 167, 167, 0.474);
+}
+
+.ui-widget.ui-widget-content {
+    border: 2px solid rgba(0, 167, 167, 0.322);
+    border-radius: 8px;
+}
+
+.ui-menu-item-wrapper {
+    border-bottom: 2px solid rgba(0, 167, 167, 0.322);
+    font-family: inherit;
+    font-weight: 300;
+}
+
+.ui-dialog-titlebar {
+    background-color: rgba(0, 167, 167, 0.322);
+}
+
+#dialog hr {
+    color: rgba(152, 117, 113, 0.89);
+}
+
+#city-search-header {
+    font-weight: 350;
+}
+
+.ui-widget input, .ui-widget button {
+    font-family: inherit;
+    font-weight: 300;
+}
 
 @media only screen and (max-width: 780px) {
     .forecast-card {
@@ -186,5 +249,8 @@ span {
     }
     span {
         font-size: 15px;
+    }
+    #forecast-title-div {
+        height: 5%;
     }
 }
