@@ -187,7 +187,7 @@ function getDay() {
   dayText.text(today);
 
 }
-
+  
 function getTh(day) {
 
     if (day === 1 || day === 21 || day === 31) {
