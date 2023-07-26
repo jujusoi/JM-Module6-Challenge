@@ -98,7 +98,6 @@ function fetchStuff(input) {
   .then(function (data) {
     var info = data
     var necessaryInformation = [info.list[1], info.list[9], info.list[17], info.list[25], info.list[33]];
-    console.log(necessaryInformation);
   
     setMainInfo(necessaryInformation);
     cycleInformation(necessaryInformation);
@@ -106,8 +105,6 @@ function fetchStuff(input) {
     getDay();
   });
 }
-
-
 
 function cycleInformation(stuff) {
   var day = 0;
@@ -173,7 +170,6 @@ function determineWeatherImage(info) {
 
 function getDay() {
   var time = dayjs().format("MMMM D, YYYY");
-  console.log(time);
 
   var today = dayjs().format("dddd, DD") + getTh();
 
@@ -183,7 +179,6 @@ function getDay() {
     var number = parseInt(betterFormat);
     var end = getTh(number);
     var finalDay = tomorrow + end;
-    console.log(finalDay);
     var dayCards = $("#day-" + i);
     dayCards.text(finalDay);
   }
@@ -192,7 +187,6 @@ function getDay() {
   dayText.text(today);
 
 }
-
 
 function getTh(day) {
 
