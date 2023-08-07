@@ -70,6 +70,7 @@ citySearchButton.on("click", function() {
     } else {
       fetchStuff(value);
       window.localStorage.setItem("previousCity", value);
+      setCitySaves(value);
       setPlaceholder();
     }
   }
@@ -82,9 +83,42 @@ function setPlaceholder() {
   bar.val("");
 }
 
-$(".city-display-button").on("click", function() {
-  var target = $(this);
-  var value = target.attr("data-city");
+function setCitySaves(item) {
+  const cityArray = JSON.parse(window.localStorage.getItem('SavedCityArray')) || [];
+  if (cityArray) {
+    if (cityArray.includes(item)) {
+      return
+      } else {
+      cityArray.push(item);
+      createButtonBars(false, item);
+    }
+  }
+  window.localStorage.setItem('SavedCityArray', JSON.stringify(cityArray));
+};
+
+function createButtonBars(create, value) {
+  const divHolder = $("#button-holder");
+  if (create) {
+    const cityArray = JSON.parse(window.localStorage.getItem('SavedCityArray')) || [];
+    for (let i = 0; i < cityArray.length; i++) {
+      let button = $("<button>");
+      button.addClass("city-display-button mt-1");
+      button.attr("data-city", cityArray[i]);
+      button.text(cityArray[i]);
+      divHolder.append(button);
+    }
+  } else {
+    let button = $("<button>");
+    button.addClass("city-display-button mt-1");
+    button.attr("data-city", value);
+    button.text(value);
+    divHolder.append(button);
+  }
+}
+
+$("#button-holder").on("click", function(event) {
+  var target = event.target;
+  var value = target.getAttribute("data-city");
   window.localStorage.setItem("previousCity", value);
   setPlaceholder();
   fetchStuff(value);
@@ -169,27 +203,22 @@ function determineWeatherImage(info) {
 }
 
 function getDay() {
-  var time = dayjs().format("MMMM D, YYYY");
-
-  var today = dayjs().format("dddd, DD") + getTh();
-
+  var today = dayjs().format("dddd");
   for (var i = 0; i < 5; i++) {
-    var tomorrow = dayjs().add(i, 'day').format("dddd, DD");
+    var tomorrow = dayjs().add(i, 'day').format("dddd");
     var betterFormat = dayjs().add(i, 'day').format("DD");
     var number = parseInt(betterFormat);
     var end = getTh(number);
-    var finalDay = tomorrow + end;
+    var finalDay = tomorrow + ", " + number + end;
     var dayCards = $("#day-" + i);
     dayCards.text(finalDay);
   }
-
   var dayText = $("#today");
-  dayText.text(today);
-
+  var day = parseInt(dayjs().format("DD"));
+  dayText.text(today + ", " + day + getTh(day));
 }
   
 function getTh(day) {
-
     if (day === 1 || day === 21 || day === 31) {
     var th = "st";
   } else if (day === 2 || day === 22) {
@@ -202,4 +231,5 @@ function getTh(day) {
   } return th;
 }
 
-fetchStuff("Adelaide");
+createButtonBars(true);
+fetchStuff(window.localStorage.getItem('previousCity') || "Adelaide");
