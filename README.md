@@ -18,9 +18,9 @@ Upon visiting the website, users will be greeted with a header, followed by two 
 
 Once users have viewed the city information and the 5-day forecast, they have the option to click on the 'Change City' button located just below the city name and date. This action will open an interactive widget that users can freely move around on the screen. The widget provides two main functions - a city search and city buttons.
 
-With the city search function, users can easily find their desired Australian city by typing its name. The search will offer autocomplete suggestions based on the input, streamlining the process. Additionally, just below the search bar, users will find a list of city buttons. These buttons offer a convenient alternative for users who prefer selecting from a pre-defined list of cities instead of using the search function.
+With the city search function, users can easily find their desired Australian city by typing its name. The search will offer autocomplete suggestions based on the input, streamlining the process. Additionally, just below the search bar, users will find a list of city buttons. These buttons offer a convenient alternative for users who prefer selecting from a pre-defined list of cities instead of using the search function. The catch to this however, is that the buttons will only generate upon a city search - and will save across sessions.
 
-Upon selecting a city using either the search bar or the city buttons, the user's search will be submitted. Once submitted, the main content of the page will be updated automatically, and the city name and forecast areas will be replaced with corresponding information for the newly chosen city.
+Upon selecting a city using either the search bar or the city buttons, the user's search will be submitted. Once submitted, the main content of the page will be updated automatically via an api fetch, and the city name and forecast areas will be replaced with corresponding information for the newly chosen city.
 
 ## Credits
 
@@ -39,8 +39,14 @@ When I click on a new city, main content updates with current and future conditi
 
 ## Images
 
-![Front-end](./Assets/readmeimages/frontend1.PNG)
-![Front-end-2](./Assets/readmeimages/frontend2.PNG)
-![Functionality](./Assets/readmeimages/schedulefunctionality.mp4)
+![Front-end](./assets/readmefiles/Front1.PNG)
+![Responsiveness](./assets/readmefiles/Responsiveness.PNG)
+![Functionality 1](./assets/readmefiles/functionality1.mp4)
+![Functionality 2](./assets/readmefiles/functionality2.mp4)
 
 ## Link
+Repo:
+https://github.com/jujusoi/JM-Module6-Challenge
+
+Pages:
+https://jujusoi.github.io/JM-Module6-Challenge/
