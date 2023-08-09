@@ -1,5 +1,5 @@
 var cityButton = $("#city-button");
-var apiLink = "https://api.openweathermap.org/data/2.5/forecast?";
+var apiLink = "https://api.openweathermap.org/data/2.5/forecast?q=";
 var details = "&appid=59fedacb97569041997bcd20b66ef73d&units=metric";
 var citySearchButton = $("#city-search-button");
 var citySearchBar = $("#city-search-bar");
@@ -23,28 +23,10 @@ cityButton.on("click", function() {
 })
 
 function cityLogic(city) {
-  var cities = {
-    Adelaide: ["lat=-34.928499&lon=138.600746", "Adelaide"],
-    Canberra: ["lat=-35.473468&lon=149.012368", "Canberra"],
-    Hobart: ["lat=-42.882138&lon=147.327195", "Hobart"],
-    Darwin: ["lat=-12.46344&lon=130.845642", "Darwin"],
-    Perth: ["lat=-31.950527&lon=115.860457", "Perth"],
-    Brisbane: ["lat=-27.469771&lon=153.025124", "Brisbane"],
-    Melbourne: ["lat=-37.813628&lon=144.963058", "Melbourne"],
-    Sydney: ["lat=-33.86882&lon=151.209296", "Sydney"]
-  }
-  var citiesLength = Object.keys(cities).length;
-  for (var i = 0; i < citiesLength; i++) {
-    var citiesName = Object.keys(cities)[i];
-    if (city === citiesName) {
-      var chosenCity = JSON.stringify(cities[city]);
-      var objectVal = JSON.parse(chosenCity);
-      var lat = objectVal[0];
-      var name = objectVal[1];
-    }
-  }
+  var name = city;
   assignCityName(name);
-  var newLink = apiLink + lat + details;
+  var newLink = apiLink + name + details;
+  console.log(newLink)
   return newLink;
 }
 
@@ -66,13 +48,21 @@ $( function() {
 citySearchButton.on("click", function() {
   var value = citySearchBar.val();
   for (var i = 0; i < availableCities.length; i++) {
-    if (value !== availableCities[i]) {
-    } else {
       fetchStuff(value);
       window.localStorage.setItem("previousCity", value);
       setCitySaves(value);
       setPlaceholder();
-    }
+  }
+})
+
+$("#city-form").on("submit", function(event) {
+  event.preventDefault();
+  var value = citySearchBar.val();
+  for (var i = 0; i < availableCities.length; i++) {
+      fetchStuff(value);
+      window.localStorage.setItem("previousCity", value);
+      setCitySaves(value);
+      setPlaceholder();
   }
 })
 
@@ -90,10 +80,10 @@ function setCitySaves(item) {
       return
       } else {
       cityArray.push(item);
+      window.localStorage.setItem('SavedCityArray', JSON.stringify(cityArray));
       createButtonBars(false, item);
     }
   }
-  window.localStorage.setItem('SavedCityArray', JSON.stringify(cityArray));
 };
 
 function createButtonBars(create, value) {
@@ -108,11 +98,31 @@ function createButtonBars(create, value) {
       divHolder.append(button);
     }
   } else {
-    let button = $("<button>");
-    button.addClass("city-display-button mt-1");
-    button.attr("data-city", value);
-    button.text(value);
-    divHolder.append(button);
+    if (divHolder.children().length >= 8) {
+      var buttonToRemove = divHolder.children().first();
+      removeSave(buttonToRemove.text())
+      buttonToRemove.remove();
+      let button = $("<button>");
+      button.addClass("city-display-button mt-1");
+      button.attr("data-city", value);
+      button.text(value);
+      divHolder.append(button);
+    } else {
+      let button = $("<button>");
+      button.addClass("city-display-button mt-1");
+      button.attr("data-city", value);
+      button.text(value);
+      divHolder.append(button);
+    }
+  }
+}
+
+function removeSave(name) {
+  var array = JSON.parse(window.localStorage.getItem("SavedCityArray"));
+  if (array.includes(name)) {
+    var firstEl = array[0];
+    array.splice(firstEl, 1);
+    window.localStorage.setItem("SavedCityArray", JSON.stringify(array));
   }
 }
 
