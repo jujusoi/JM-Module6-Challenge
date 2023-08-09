@@ -26,7 +26,6 @@ function cityLogic(city) {
   var name = city;
   assignCityName(name);
   var newLink = apiLink + name + details;
-  console.log(newLink)
   return newLink;
 }
 
