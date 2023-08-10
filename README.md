@@ -46,7 +46,7 @@ When I click on a new city, main content updates with current and future conditi
 
 ## Link
 Repo:
-https://github.com/jujusoi/JM-Module6-Challenge
+https://github.com/jujusoi/JM-Weather-Dashboard
 
 Pages:
-https://jujusoi.github.io/JM-Module6-Challenge/
+https://jujusoi.github.io/JM-Weather-Dashboard/
